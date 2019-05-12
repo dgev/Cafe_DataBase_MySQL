@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+ </head>
+ <body>
+ <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <div ng-app="app" ng-controller="myCtrl">
+      <h2>Get Favourite Product by SubCategory</h2>
+        <p>Subcategory: <input type="text" name="sub_category" ng-model="sub_category" required /></p>
+        <button ng-click="SendData0()">Submit</button>
+        <h2>Get Orders By Customer SSN</h2>
+        <p>SSN: <input type="text" name="SSN" ng-model="SSN" required /></p>
+        <button ng-click="SendData1()">Submit</button>
+        <h2>Get Order Details by Order ID</h2>
+        <p>Order_id: <input type="text" name="order_id" ng-model="order_id" required /></p>
+        <button ng-click="SendData2()">Submit</button>
+        <h2>Get Products by Category</h2>
+        <p>Category: <input type="text" name="category_name" ng-model="category_name" required /></p>
+        <button ng-click="SendData3()">Submit</button>
+        <hr />
+        {{ PostDataResponse }}
+    </div>
+    <script>
+       var app = angular.module("app",[]);
+        app.controller("myCtrl", function($scope,$http){
+        $scope.SendData0 = function() {
+            var data = {
+                    sub_category : $scope.sub_category
+                }
+            $http.post('/postFormAngular', data)
+                .success(function (data, status, headers, config) {
+                    $scope.PostDataResponse = data;
+                })
+                .error(function(data, status, header, config){
+                    $scope.PostDataResponse = "Data: " + status;
+
+
+                });
+        };  
+        $scope.SendData1 = function() {
+            var data = {
+                    SSN : $scope.SSN
+                }
+            $http.post('/postFormAngular1', data)
+                .success(function (data, status, headers, config) {
+                    $scope.PostDataResponse = data;
+                })
+                .error(function(data, status, header, config){
+                    $scope.PostDataResponse = "Data: " + status;
+
+
+                });
+        };  
+        $scope.SendData2 = function() {
+            var data = {
+                    order_id : $scope.order_id
+                }
+            $http.post('/postFormAngular2', data)
+                .success(function (data, status, headers, config) {
+                    $scope.PostDataResponse = data;
+                })
+                .error(function(data, status, header, config){
+                    $scope.PostDataResponse = "Data: " + status;
+
+
+                });
+        };  
+        $scope.SendData3 = function() {
+            var data = {
+                    category_name : $scope.category_name
+                }
+            $http.post('/postFormAngular3', data)
+                .success(function (data, status, headers, config) {
+                    $scope.PostDataResponse = data;
+                })
+                .error(function(data, status, header, config){
+                    $scope.PostDataResponse = "Data: " + status;
+
+
+                });
+        };  
+        });
+    </script>
+ </body>
+  </html>
